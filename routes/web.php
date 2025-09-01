@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Livewire\Products;
+use App\Livewire\ShowProduct;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -27,5 +28,5 @@ Route::middleware('auth')->group(function () {
 
 
 Route::get('/productos', Products::class)->name('products');
-
+Route::get('/productos/{slug}', ShowProduct::class)->name('product.show');
 require __DIR__ . '/auth.php';

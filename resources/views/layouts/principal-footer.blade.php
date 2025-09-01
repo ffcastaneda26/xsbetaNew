@@ -3,15 +3,16 @@
             <h3>Pie de página</h3>
         </div>
         <section
-            class="wrapper grid gap-2 grid-cols-2 justify-items-center footer-area md:footer-area-md md:grid-cols-1 md:justify-items-stretch">
-            <div class="flex flex-wrap gap-2 justify-between w-full [grid-area:social-media]">
-                <a href="#"><img src="./images/icon-facebook.svg" class="w-4"> </a>
-                <a href="#"><img src="./images/icon-youtube.svg" class="w-4"></a>
-                <a href="#"><img src="./images/icon-twitter.svg" class="w-4"></a>
-                <a href="#"><img src="./images/icon-pinterest.svg" class="w-4"></a>
-                <a href="#"><img src="./images/icon-instagram.svg" class="w-4"></a>
+            class="wrapper grid gap-2 grid-cols-1justify-items-center footer-area md:footer-area-md md:grid-cols-1 md:justify-items-stretch md:text-center">
+            <div class="flex flex-wrap gap-2 justify-center w-full [grid-area:social-media] md:justify-start">
+                <a href="3"><img src="{{ asset('images/icon-facebook.svg')}}"></a>
+                <a href="3"><img src="{{ asset('images/icon-youtube.svg')}}"></a>
+                <a href="3"><img src="{{ asset('images/icon-twitter.svg')}}"></a>
+                <a href="3"><img src="{{ asset('images/icon-pinterest.svg')}}"></a>
+                <a href="3"><img src="{{ asset('images/icon-instagram.svg')}}"></a>
             </div>
-            <p class="text-dark-grayish-blue [grid-area:copy] text-end">Copyright {{ date('Y') }}.
-                Todos los derechos reservados</p>
+            <p class="text-white text-sm [grid-area:copy] text-end font-semibold">Copyright {{ date('Y') }}.
+                Todos los derechos reservados
+            </p>
         </section>
     </footer>

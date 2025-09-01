@@ -38,23 +38,30 @@
 
     <main class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         @forelse ($products as $product)
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                <div class="h-48 overflow-hidden flex items-center justify-center">
-                    @if (!empty($product->images) && is_array($product->images))
-                        <img src="{{ asset('storage/' . $product->images[0]) }}" alt="{{ $product->name }}"
-                            class="w-full h-full object-cover">
-                    @else
-                        <img src="{{ asset('images/generico.jpg') }}" alt="Imagen genérica"
-                            class="w-full h-full object-cover">
-                    @endif
+            <a href="{{ route('product.show', ['slug' => $product->slug]) }}">
+
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="h-48 overflow-hidden flex items-center justify-center">
+                        @if (!empty($product->images) && is_array($product->images))
+                            <img src="{{ asset('storage/' . $product->images[0]) }}" alt="{{ $product->name }}"
+                                class="w-full h-full object-cover">
+                        @else
+                            <img src="{{ asset('images/generico.jpg') }}" alt="Imagen genérica"
+                                class="w-full h-full object-cover">
+                        @endif
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-xl mb-2">{{ $product->name }}</h3>
+                        <p class="text-blue-600 font-semibold text-lg">
+                            ${{ number_format($product->price, 2, '.', ',') }}
+                        </p>
+                        <p class="text-blue-600 font-semibold text-lg">
+                            Total de imagenes: {{ count($product->images) }}
+                        </p>
+                    </div>
                 </div>
-                <div class="p-4">
-                    <h3 class="font-bold text-xl mb-2">{{ $product->name }}</h3>
-                    <p class="text-blue-600 font-semibold text-lg">
-                        ${{ number_format($product->price, 2, '.', ',') }}
-                    </p>
-                </div>
-            </div>
+            </a>
+
         @empty
             <h1 class="col-span-full text-center text-2xl font-bold text-gray-700">NO HAY PRODUCTOS DISPONIBLES.</h1>
         @endforelse
