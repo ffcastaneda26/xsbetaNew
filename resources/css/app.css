@@ -15,19 +15,14 @@
 
     .footer-area {
         grid-template-areas:
-            "form"
-            "navigation"
             "social-media"
-            "logo"
             "copy";
     }
 
     .footer-area-md {
         grid-template-areas:
-            "logo           navigation  form"
-            "social-media   navigation  copy"
+            "social-media   copy"
         ;
-
     }
 
     .slider{

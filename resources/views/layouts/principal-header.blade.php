@@ -3,7 +3,7 @@
 
                 <a href="#" class="w-1/3 max-w-[140px]">
                     {{-- <img src="{{ asset('images/logo.svg') }}" class="w-full"> --}}
-                    <img src="{{ asset('images/logo_excess.jpg') }}" alt="Logo Excess"  class="w-full>
+                    <img src="{{ asset('images/logo_excess.jpg') }}" class="w-full">
                 </a>
 
                 <input type="checkbox" id="menu" class="peer hidden">
