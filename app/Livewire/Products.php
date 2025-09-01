@@ -22,7 +22,7 @@ class Products extends Component
     {
         return view('livewire.products', [
             'records' => $this->products,
-        ])->layout('layouts.guest');
+        ])->layout('layouts.principal');
     }
 
     public function filterByCategory($categoryId)

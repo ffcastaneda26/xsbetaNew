@@ -11,7 +11,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-        if (Auth::check()) {
+    if (Auth::check()) {
         if (Auth::user()->isAdmin()) {
             return redirect()->to('/admin');
         }
@@ -26,6 +26,6 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('/productos',Products::class)->name('products');
+Route::get('/productos', Products::class)->name('products');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
