@@ -15,7 +15,7 @@ class Products extends Component
 
     public function mount()
     {
-        $this->categories = ProductCategory::with('products')->get();
+         $this->categories = ProductCategory::with('products')->get();
         $this->products = Product::with('categories')->get();
     }
     public function render()
