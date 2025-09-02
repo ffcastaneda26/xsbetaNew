@@ -63,7 +63,7 @@ class BlogForm
                 ]),
                 Group::make()->schema([
                     RichEditor::make('description')
-                        ->label('Descripción')
+                        ->label('Intro')
                         ->columnSpanFull(),
 
                     RichEditor::make('content')
