@@ -31,8 +31,6 @@ class BlogForm
                         ->label('Título')
                         ->required()
                         ->unique(ignoreRecord: true)
-                        ->live(onBlur: true)
-                        ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state)))
                         ->validationMessages([
                             'required' => 'El título es obligatorio.',
                             'unique' => 'Este título ya existe. Por favor, elige uno diferente.',
@@ -64,10 +62,12 @@ class BlogForm
 
                 ]),
                 Group::make()->schema([
-                    Textarea::make('description')
+                    RichEditor::make('description')
                         ->label('Intro')
                         ->maxLength(255)
-                        ->rows(3)
+                        ->extraAttributes([
+                            'style' => 'height: 200px; overflow-y: auto;',
+                        ])
                         ->columnSpanFull(),
 
                     RichEditor::make('content')

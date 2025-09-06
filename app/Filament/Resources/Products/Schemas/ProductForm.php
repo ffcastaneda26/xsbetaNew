@@ -23,42 +23,52 @@ class ProductForm
                 TextInput::make('name')
                     ->required()
                     ->unique(ignoreRecord: true)
-                    ->live(onBlur: true)
-                    ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state))),
-
-                TextInput::make('slug')
-                    ->required()
-                    ->unique(ignoreRecord: true)
-                    ->readOnly(),
-   RichEditor::make('description')
-    ->label('Descripción')
-    ->columnSpanFull()
-    ->extraAttributes([
-        'style' => 'height: 200px; overflow-y: auto;',
-    ]),
-
+                    ->validationMessages([
+                        'required' => 'El Nombre  es obligatorio.',
+                        'unique' => 'Este nombre ya existe. Por favor, elige uno diferente.',
+                    ]),
+                Toggle::make('is_active')
+                    ->label('¿Activo?')
+                    ->required(),
                 TextInput::make('short_description')
-                    ->label('Descripción Corta'),
-                TextInput::make('price')
-                    ->label('Precio')
-                    ->required()
-                    ->numeric()
-                    ->prefix('$'),
+                    ->label('Descripción Corta')
+                    ->maxLength(255)
+                    ->columnSpanFull(),
+
+                RichEditor::make('description')
+                    ->label('Descripción')
+                    ->columnSpanFull()
+                    ->extraAttributes([
+                        'style' => 'height: 200px; overflow-y: auto;',
+                    ]),
+
                 TextInput::make('stock')
                     ->label('Existencia')
                     ->required()
                     ->numeric()
                     ->default(0),
+                TextInput::make('price')
+                    ->label('Precio')
+                    ->required()
+                    ->numeric()
+                    ->prefix('$'),
 
-                Toggle::make('is_active')
-                    ->label('¿Activo?')
-                    ->required(),
 
+
+                TextInput::make('link_name')
+                    ->label('Nombre del Link')
+                    ->maxLength(255),
+                TextInput::make('link_url')
+                    ->label('Url del Link')
+                    ->maxLength(255),
                 FileUpload::make('images')
                     ->label('Imágenes')
                     ->multiple()
                     ->reorderable()
                     ->image()
+                    ->imageEditor()
+                    ->imageEditorViewportWidth('200') // Configura el ancho
+                    ->imageEditorViewportHeight('200')// Configura el alto
                     ->acceptedFileTypes(['image/*'])
                     ->disk('public')
                     ->directory('products')
@@ -66,7 +76,7 @@ class ProductForm
                         $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
                         $extension = $file->getClientOriginalExtension();
                         return time() . '_' . $originalName . '.' . $extension;
-                    }),
+                    })
             ]);
     }
 }

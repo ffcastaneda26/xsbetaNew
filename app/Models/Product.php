@@ -19,6 +19,8 @@ class Product extends Model
         'short_description',
         'price',
         'stock',
+        'link_name',
+        'link_url',
         'images',
         'is_active',
     ];
@@ -27,22 +29,6 @@ class Product extends Model
         'images' => 'array',
     ];
 
-    // protected function images(): Attribute
-    // {
-    //     return Attribute::make(
-    //         get: function ($value) {
-    //             // El atributo 'images' ya está deserializado como un array por el 'cast' JSON
-    //             // Verificamos si es un array válido y no está vacío
-    //             if (is_array($value)) {
-    //                 // Mapeamos el array para generar la URL completa de cada imagen
-    //                 return array_map(function ($imageName) {
-    //                     return asset('storage/products/' . $imageName);
-    //                 }, $value);
-    //             }
-    //             return [];
-    //         }
-    //     );
-    // }
 
     public function categories(): BelongsToMany
     {

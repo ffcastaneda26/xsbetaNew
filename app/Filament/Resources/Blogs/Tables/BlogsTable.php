@@ -8,6 +8,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Forms\Components\DatePicker;
+use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -28,7 +29,7 @@ class BlogsTable
                     ->label('Título')
                     ->sortable()
                     ->searchable(),
-                    ToggleColumn::make('is_published')
+                ToggleColumn::make('is_published')
                     ->label('¿Publicado?'),
                 TextColumn::make('published_at')
                     ->dateTime()
@@ -79,8 +80,15 @@ class BlogsTable
                     })
             ])
             ->recordActions([
-                EditAction::make()->button(),
-                DeleteAction::make()->button(),
+                EditAction::make()
+                    ->label('')
+                    ->icon('heroicon-o-pencil-square')
+                    ->tooltip('Editar'),
+                DeleteAction::make()
+                    ->label('')
+                    ->icon('heroicon-o-trash')
+                    ->tooltip('Eliminar'),
+
             ]);
     }
 }
