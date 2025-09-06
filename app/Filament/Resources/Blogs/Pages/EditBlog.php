@@ -6,6 +6,7 @@ use App\Filament\Resources\Blogs\BlogResource;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\ViewAction;
 use Filament\Resources\Pages\EditRecord;
+use Illuminate\Support\Str;
 
 class EditBlog extends EditRecord
 {
@@ -21,5 +22,11 @@ class EditBlog extends EditRecord
     protected function getRedirectUrl(): string
     {
         return $this->getResource()::getUrl('index');
+    }
+
+    protected function mutateFormDataBeforeSave(array $data): array
+    {
+        $data['slug'] = Str::slug($data['title']);
+        return $data;
     }
 }

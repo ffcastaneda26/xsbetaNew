@@ -32,12 +32,14 @@ class BlogForm
                         ->required()
                         ->unique(ignoreRecord: true)
                         ->live(onBlur: true)
-                        ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state))),
+                        ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state)))
+                        ->validationMessages([
+                            'required' => 'El título es obligatorio.',
+                            'unique' => 'Este título ya existe. Por favor, elige uno diferente.',
+                        ]),
 
-                    TextInput::make('slug')
-                        ->required()
-                        ->unique(ignoreRecord: true)
-                        ->readOnly(),
+
+
                     Section::make()->schema([
                         Toggle::make('is_published')
                             ->label('¿Publicado?')
@@ -62,8 +64,10 @@ class BlogForm
 
                 ]),
                 Group::make()->schema([
-                    RichEditor::make('description')
+                    Textarea::make('description')
                         ->label('Intro')
+                        ->maxLength(255)
+                        ->rows(3)
                         ->columnSpanFull(),
 
                     RichEditor::make('content')
