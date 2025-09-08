@@ -24,6 +24,9 @@ class BlogsTable
     {
         return $table
             ->columns([
+                ImageColumn::make('image')
+                    ->label('Imagen')
+                    ->circular(),
 
                 TextColumn::make('title')
                     ->label('Título')
