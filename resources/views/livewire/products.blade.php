@@ -32,15 +32,21 @@
                 </div>
             </div>
         @endif
+        <div class="ml-8">
+             {{ $products->links() }}
+        </div>
     </nav>
+<hr class="mb-8">
 
+    <div class="mt-4 mb-4">
+
+    </div>
     <hr class="mb-8">
 
     <main class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
         @forelse ($products as $product)
             <a href="{{ route('product.show', ['slug' => $product->slug]) }}">
-                {{-- TODO:: Paginar --}}
-                {{-- TODO:: Validar que exista el archivo genérico --}}
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden">
                     <div class="h-48 overflow-hidden flex items-center justify-center">
                         @php
@@ -76,4 +82,8 @@
             <h1 class="col-span-full text-center text-2xl font-bold text-gray-700">NO HAY PRODUCTOS DISPONIBLES.</h1>
         @endforelse
     </main>
+
+    <div class="mt-8">
+        {{ $products->links() }}
+    </div>
 </div>
