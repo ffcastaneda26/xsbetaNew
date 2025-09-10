@@ -39,7 +39,7 @@ class ProductForm
                     ->label('Descripción')
                     ->columnSpanFull()
                     ->extraAttributes([
-                        'style' => 'height: 200px; overflow-y: auto;',
+                        'style' => 'height: 70vh; overflow-y: auto;',
                     ]),
 
                 TextInput::make('stock')
