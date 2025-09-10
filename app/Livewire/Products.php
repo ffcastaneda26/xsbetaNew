@@ -12,32 +12,44 @@ class Products extends Component
     use WithPagination;
 
     public $categories;
-    public $selectedCategory='all';
+    public $selectedCategory = 'all';
     public $searchQuery = '';
-
-    // Ya no es necesario inicializar $products aquí, ya que se obtendrá en el método render.
-    // public $products;
+    public $perPage = 12;
+    public $showMoreCategories = false; // Propiedad para controlar la visibilidad
 
     public function mount()
     {
          $this->categories = ProductCategory::with('products')->get();
     }
+
     public function render()
     {
-        // Se define la lógica de obtención de productos directamente en el método render
-        // para que la paginación funcione correctamente.
-        if ($this->selectedCategory === 'all') {
-            $products = Product::with('categories')->paginate(12);
-        } else if ($this->searchQuery) {
-            $products = Product::where('name', 'like', '%' . $this->searchQuery . '%')->paginate(12);
-        } else {
-            $category = ProductCategory::with('products')->where('name', $this->selectedCategory)->first();
-            $products = $category ? $category->products()->paginate(12) : collect();
+        $productsQuery = Product::query();
+
+        if ($this->selectedCategory !== 'all') {
+            $category = ProductCategory::where('name', $this->selectedCategory)->first();
+            if ($category) {
+                $productsQuery->whereHas('categories', function ($query) use ($category) {
+                    $query->where('product_category_id', $category->id);
+                });
+            }
         }
 
+        if ($this->searchQuery) {
+            $productsQuery->where('name', 'like', '%' . $this->searchQuery . '%');
+        }
+
+        $products = $productsQuery->paginate($this->perPage);
+
         return view('livewire.products', [
-            'products' => $products, // Se ajusta el nombre de la variable para ser consistente con la vista
+            'products' => $products,
         ])->layout('layouts.principal');
+    }
+
+    // Nuevo método para alternar la visibilidad del menú
+    public function toggleMoreCategories()
+    {
+        $this->showMoreCategories = !$this->showMoreCategories;
     }
 
     public function filterByCategory($categoryId)
@@ -50,12 +62,13 @@ class Products extends Component
                 $this->selectedCategory = $category->name;
             }
         }
-        $this->resetPage(); // Reinicia la paginación a la primera página.
+        $this->resetPage();
+        $this->showMoreCategories = false; // Cierra el menú al seleccionar una categoría
     }
 
     public function updatedSearchQuery()
     {
-        $this->selectedCategory = null; // Reinicia la categoría seleccionada al buscar.
-        $this->resetPage(); // Reinicia la paginación a la primera página.
+        $this->selectedCategory = 'all';
+        $this->resetPage();
     }
 }
