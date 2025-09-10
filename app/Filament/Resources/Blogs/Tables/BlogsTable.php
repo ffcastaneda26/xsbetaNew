@@ -27,7 +27,9 @@ class BlogsTable
             ->columns([
                 ImageColumn::make('image')
                     ->label('Imagen')
-                    ->getStateUsing(fn($record) => Storage::disk('public')->url($record->image)),
+                    ->imageWidth(200)
+                    ->imageHeight(200)
+                    ->getStateUsing(fn($record) => $record->image ? Storage::disk('public')->url($record->image) : asset('/images/generico.jpeg')),
                 TextColumn::make('title')
                     ->label('Título')
                     ->sortable()
