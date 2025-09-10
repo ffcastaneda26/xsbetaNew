@@ -40,13 +40,22 @@
         @forelse ($products as $product)
             <a href="{{ route('product.show', ['slug' => $product->slug]) }}">
                 {{-- TODO:: Paginar --}}
+                {{-- TODO:: Validar que exista el archivo genérico --}}
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden">
                     <div class="h-48 overflow-hidden flex items-center justify-center">
-                        @if (!empty($product->images) && is_array($product->images))
+                        @php
+                            $imageExists = false;
+                            $imagePath = '';
+                            if (!empty($product->images) && is_array($product->images) && count($product->images) > 0) {
+                                $imagePath =   $product->images[0];
+                                $imageExists = Storage::disk('public')->exists($imagePath);
+                            }
+                        @endphp
+
+                        @if ($imageExists)
                             <img src="{{ asset('storage/' . $product->images[0]) }}" alt="{{ $product->name }}"
                                 class="w-full h-full object-cover">
                         @else
-                            {{-- TODO:: Validar que exista el archivo genérico --}}
                             <img src="{{ asset('images/generico.jpeg') }}" alt="Imagen genérica"
                                 class="w-full h-full object-cover">
                         @endif
@@ -57,7 +66,7 @@
                             ${{ number_format($product->price, 2, '.', ',') }}
                         </p>
                         <p class="text-blue-600 font-semibold text-lg">
-                            ID: {{ $product->id }}  Total de imagenes: {{ count($product->images) }}
+                            ID: {{ $product->id }} Total de imagenes: {{ count($product->images) }}
                         </p>
                     </div>
                 </div>
