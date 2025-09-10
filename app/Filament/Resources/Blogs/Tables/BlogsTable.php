@@ -17,6 +17,7 @@ use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Contracts\Database\Query\Builder;
+use Illuminate\Support\Facades\Storage;
 
 class BlogsTable
 {
@@ -26,8 +27,7 @@ class BlogsTable
             ->columns([
                 ImageColumn::make('image')
                     ->label('Imagen')
-                    ->circular(),
-
+                    ->getStateUsing(fn($record) => Storage::disk('public')->url($record->image)),
                 TextColumn::make('title')
                     ->label('Título')
                     ->sortable()
