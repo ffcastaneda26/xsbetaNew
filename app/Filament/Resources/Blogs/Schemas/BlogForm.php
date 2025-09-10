@@ -22,61 +22,62 @@ class BlogForm
     {
         return $schema
             ->components([
-                Group::make()->schema([
-                    Select::make('author_id')
-                        ->relationship('author', 'name')
-                        ->label('Autor')
-                        ->required(),
-                    TextInput::make('title')
-                        ->label('Título')
-                        ->required()
-                        ->unique(ignoreRecord: true)
-                        ->validationMessages([
-                            'required' => 'El título es obligatorio.',
-                            'unique' => 'Este título ya existe. Por favor, elige uno diferente.',
-                        ]),
+
+                Select::make('author_id')
+                    ->relationship('author', 'name')
+                    ->label('Autor')
+                    ->required(),
+                TextInput::make('title')
+                    ->label('Título')
+                    ->required()
+                    ->unique(ignoreRecord: true)
+                    ->validationMessages([
+                        'required' => 'El título es obligatorio.',
+                        'unique' => 'Este título ya existe. Por favor, elige uno diferente.',
+                    ]),
 
 
 
-                    Section::make()->schema([
-                        Toggle::make('is_published')
-                            ->label('¿Publicado?')
-                            ->required(),
-                        DateTimePicker::make('published_at')
-                            ->label('Fecha de Publicación')
-                            ->requiredIf('is_published', true)
-                            ->validationMessages([
-                                'requiredIf' => 'La fecha de publicación es obligatoria cuando el contenido está marcado como publicado.'
-                            ]),
-                    ])->columns(2),
 
-                    Section::make()->schema([
-                        FileUpload::make('image')
-                            ->label('-Imagen')
-                            ->image()
-                            ->directory('blogs')
-                            ->getUploadedFileNameForStorageUsing(
-                                fn(UploadedFile $file): string => time() . '_' . $file->getClientOriginalName(),
-                            ),
-                    ])->columnSpanFull(),
+                Toggle::make('is_published')
+                    ->label('¿Publicado?')
+                    ->required(),
+                DateTimePicker::make('published_at')
+                    ->label('Fecha de Publicación')
+                    ->requiredIf('is_published', true)
+                    ->validationMessages([
+                        'requiredIf' => 'La fecha de publicación es obligatoria cuando el contenido está marcado como publicado.'
+                    ]),
 
-                ]),
-                Group::make()->schema([
-                    RichEditor::make('description')
-                        ->label('Intro')
-                        ->maxLength(255)
-                        ->extraAttributes([
-                            'style' => 'height: 200px; overflow-y: auto;',
-                        ])
-                        ->columnSpanFull(),
 
-                    RichEditor::make('content')
-                        ->label('Contenido')
-                        ->columnSpanFull()
-                        ->extraAttributes([
-                            'style' => 'height: 200px; overflow-y: auto;',
-                        ]),
-                ]),
+                RichEditor::make('description')
+                    ->label('Intro')
+                    ->maxLength(255)
+                    ->extraAttributes([
+                        'style' => 'height: 200px; overflow-y: auto;',
+                    ])
+                    ->columnSpanFull(),
+
+                RichEditor::make('content')
+                    ->label('Contenido')
+                    ->columnSpanFull()
+                    ->extraAttributes([
+                        'style' => 'height: 200px; overflow-y: auto;',
+                    ]),
+                Section::make()->schema([
+                    FileUpload::make('image')
+                        ->label('-Imagen')
+                        ->image()
+                        ->directory('blogs')
+                        ->getUploadedFileNameForStorageUsing(
+                            fn(UploadedFile $file): string => time() . '_' . $file->getClientOriginalName(),
+                        ),
+                ])->columnSpanFull(),
+
+
+
+
+
 
 
 
