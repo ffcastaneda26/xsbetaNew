@@ -1,22 +1,17 @@
 <?php
-
 namespace App\Filament\Resources\Blogs\Schemas;
 
 use App\Models\Blog;
+use App\Models\Category;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
-use Filament\Schemas\Components\Group;
-use Filament\Schemas\Components\Section;
-use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Schema;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
 class BlogForm
 {
@@ -29,17 +24,24 @@ class BlogForm
                     ->relationship('author', 'name')
                     ->label('Autor')
                     ->required(),
+                Select::make('categories')
+                    ->relationship('categories', 'name')
+                    ->label('Categorías')
+                    ->multiple()
+                    ->preload()
+                    ->required()
+                    ->default(function () {
+                        $defaultCategory =Category::where('default', 1)->first();
+                        return $defaultCategory ? [$defaultCategory->getKey()] : [];
+                    }),
                 TextInput::make('title')
                     ->label('Título')
                     ->required()
                     ->unique(ignoreRecord: true)
                     ->validationMessages([
                         'required' => 'El título es obligatorio.',
-                        'unique' => 'Este título ya existe. Por favor, elige uno diferente.',
+                        'unique'   => 'Este título ya existe. Por favor, elige uno diferente.',
                     ]),
-
-
-
 
                 Toggle::make('is_published')
                     ->label('¿Publicado?')
@@ -48,9 +50,8 @@ class BlogForm
                     ->label('Fecha de Publicación')
                     ->requiredIf('is_published', true)
                     ->validationMessages([
-                        'requiredIf' => 'La fecha de publicación es obligatoria cuando el contenido está marcado como publicado.'
+                        'requiredIf' => 'La fecha de publicación es obligatoria cuando el contenido está marcado como publicado.',
                     ]),
-
 
                 RichEditor::make('description')
                     ->label('Intro')
@@ -82,7 +83,7 @@ class BlogForm
                         }
                         return $state;
                     })
-                    ->deleteUploadedFileUsing(function (Blog  $record) {
+                    ->deleteUploadedFileUsing(function (Blog $record) {
                         // Usa una función anónima completa para garantizar que se reciba el $path
                         Storage::disk('public')->delete($record->image);
                     }),

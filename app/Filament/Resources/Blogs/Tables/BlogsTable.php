@@ -1,15 +1,9 @@
 <?php
-
 namespace App\Filament\Resources\Blogs\Tables;
 
-use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
-use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Actions\ViewAction;
 use Filament\Forms\Components\DatePicker;
-use Filament\Support\Icons\Heroicon;
-use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
@@ -34,6 +28,15 @@ class BlogsTable
                     ->label('Título')
                     ->sortable()
                     ->searchable(),
+                TextColumn::make('categories.name')
+                    ->label('Categorías')
+                    ->listWithLineBreaks()
+                    ->limit(50)
+                    ->sortable()
+                    ->searchable(),
+                // TextColumn::make('categories_count')
+                //     ->counts('categories')
+                //     ->label('Categorías'),
                 ToggleColumn::make('is_published')
                     ->label('¿Publicado?'),
                 TextColumn::make('published_at')
@@ -59,7 +62,7 @@ class BlogsTable
                 SelectFilter::make('is_published')
                     ->label('Estado de Publicación')
                     ->options([
-                        true => 'Publicado',
+                        true  => 'Publicado',
                         false => 'No Publicado',
                     ])
                     ->native(false),
@@ -82,7 +85,7 @@ class BlogsTable
                                 $data['published_until'] ?? null,
                                 fn(Builder $query, $date): Builder => $query->whereDate('published_at', '<=', $date),
                             );
-                    })
+                    }),
             ])
             ->recordActions([
                 EditAction::make()

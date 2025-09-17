@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Blogs\Pages;
 
 use App\Filament\Resources\Blogs\BlogResource;
+use App\Models\Category;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\ViewAction;
 use Filament\Resources\Pages\EditRecord;
@@ -29,4 +30,5 @@ class EditBlog extends EditRecord
         $data['slug'] = Str::slug($data['title']);
         return $data;
     }
+
 }

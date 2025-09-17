@@ -25,6 +25,7 @@ class CategoriesTable
                 TextColumn::make('blogs_count')
                     ->counts('blogs')
                     ->label('Blogs'),
+
                 IconColumn::make('default')
                     ->label('Por Defecto?')
                     ->alignCenter()
