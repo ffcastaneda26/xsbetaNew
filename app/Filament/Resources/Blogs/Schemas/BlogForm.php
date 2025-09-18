@@ -31,7 +31,7 @@ class BlogForm
                     ->preload()
                     ->required()
                     ->default(function () {
-                        $defaultCategory =Category::where('default', 1)->first();
+                        $defaultCategory = Category::where('default', 1)->first();
                         return $defaultCategory ? [$defaultCategory->getKey()] : [];
                     }),
                 TextInput::make('title')
@@ -75,7 +75,13 @@ class BlogForm
                     ->getUploadedFileNameForStorageUsing(
                         fn(UploadedFile $file): string => time() . '_' . str_replace(' ', '_', $file->getClientOriginalName()),
                     )
-                    ->dehydrateStateUsing(function (string $state, $record) {
+                    ->dehydrateStateUsing(function (?string $state, $record) {
+                        // Si $state es null, no se ha subido una nueva imagen,
+                        // así que no hay nada que procesar o borrar.
+                        if (is_null($state)) {
+                            return null;
+                        }
+
                         // Si hay un registro existente y se está subiendo una nueva imagen
                         if ($record && $record->image && $record->image != $state) {
                             // Borra la imagen antigua del disco
