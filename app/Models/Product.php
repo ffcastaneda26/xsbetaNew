@@ -21,6 +21,7 @@ class Product extends Model
         'stock',
         'link_name',
         'link_url',
+        'destacado',
         'images',
         'is_active',
     ];

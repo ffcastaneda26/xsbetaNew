@@ -32,6 +32,5 @@ class EditCategory extends EditRecord
         }
         return $data;
 
-
     }
 }

@@ -18,6 +18,7 @@ class ProductCategory extends Model
         'name',
         'slug',
         'is_active',
+        'default'
     ];
 
     public function products(): BelongsToMany
