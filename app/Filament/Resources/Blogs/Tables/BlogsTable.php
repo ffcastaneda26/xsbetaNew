@@ -27,35 +27,38 @@ class BlogsTable
                 TextColumn::make('title')
                     ->label('Título')
                     ->sortable()
-                    ->searchable(),
+                    ->searchable()
+                    ->verticallyAlignStart(),
                 TextColumn::make('categories.name')
                     ->label('Categorías')
                     ->listWithLineBreaks()
                     ->limit(50)
                     ->sortable()
+                    ->verticallyAlignStart()
                     ->searchable(),
-                // TextColumn::make('categories_count')
-                //     ->counts('categories')
-                //     ->label('Categorías'),
                 ToggleColumn::make('is_published')
-                    ->label('¿Publicado?'),
+                    ->label('¿Publicado?')
+                    ->verticallyAlignStart(),
                 TextColumn::make('published_at')
                     ->dateTime()
                     ->label('Publicado el')
                     ->sortable()
                     ->searchable()
+                    ->verticallyAlignStart()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->label('Creado el')
                     ->sortable()
                     ->searchable()
+                    ->verticallyAlignStart()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
                     ->dateTime()
                     ->label('Actualizado el')
                     ->sortable()
                     ->searchable()
+                    ->verticallyAlignStart()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
@@ -92,6 +95,7 @@ class BlogsTable
                     ->label('')
                     ->icon('heroicon-o-pencil-square')
                     ->tooltip('Editar'),
+
                 DeleteAction::make()
                     ->label('')
                     ->icon('heroicon-o-trash')

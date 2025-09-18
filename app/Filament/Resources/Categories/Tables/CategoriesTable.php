@@ -35,7 +35,6 @@ class CategoriesTable
                 //
             ])
             ->recordActions([
-                ViewAction::make(),
                 EditAction::make(),
                 DeleteAction::make()
                     ->label('')
