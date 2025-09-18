@@ -15,9 +15,8 @@ class EditCategory extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            ViewAction::make(),
             DeleteAction::make()
-                ->visible(fn($record) => $record->blogs()->count() === 0),
+                ->visible(fn($record) => $record->blogs()->count() === 0 ||  !$record->default),
         ];
     }
     protected function getRedirectUrl(): string
