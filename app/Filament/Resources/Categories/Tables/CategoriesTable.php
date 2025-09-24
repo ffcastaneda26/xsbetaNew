@@ -23,7 +23,7 @@ class CategoriesTable
                     ->counts('blogs')
                     ->label('Blogs'),
                 IconColumn::make('default')
-                    ->label('Por Defecto?')
+                    ->label('¿Predeterminada?')
                     ->alignCenter()
                     ->boolean(),
             ])
@@ -31,11 +31,15 @@ class CategoriesTable
                 //
             ])
             ->recordActions([
-                EditAction::make(),
+                EditAction::make()
+                    ->label('')
+                    ->icon('heroicon-o-pencil-square')
+                    ->tooltip('Editar'),
                 DeleteAction::make()
                     ->label('')
                     ->icon('heroicon-o-trash')
                     ->tooltip('Eliminar')
+                    ->requiresConfirmation()
                     ->action(function (Model $record, array $data) {
                         // Verifica si la categoría tiene blogs asociados
                         if ($record->blogs()->count() > 0) {
@@ -58,6 +62,6 @@ class CategoriesTable
                         $record->delete();
                     })
                     ->disabled(fn(Model $record) => $record->default),
-            ]);
+            ])->actionsColumnLabel('Acciones');
     }
 }

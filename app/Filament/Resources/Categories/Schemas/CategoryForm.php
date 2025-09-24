@@ -22,7 +22,7 @@ class CategoryForm
                     ->live(onBlur: true)
                     ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state))),
                 Toggle::make('default')
-                    ->label('¿Por defecto?'),
+                    ->label('¿Predeterminada?'),
 
             ]);
     }

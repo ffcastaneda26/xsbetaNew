@@ -50,6 +50,7 @@ class ProductCategoriesTable
                     ->label('')
                     ->icon('heroicon-o-trash')
                     ->tooltip('Eliminar')
+                    ->requiresConfirmation()
                     ->action(function (Model $record, array $data) {
                         if ($record->products()->count() > 0) {
                             $defaultCategory = ProductCategory::where('default', true)->first();
@@ -66,11 +67,6 @@ class ProductCategoriesTable
                         $record->delete();
                     })
                     ->disabled(fn(Model $record) => $record->default),
-            ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
-            ]);
+            ])->actionsColumnLabel('Acciones');
     }
 }

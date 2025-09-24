@@ -99,8 +99,10 @@ class BlogsTable
                 DeleteAction::make()
                     ->label('')
                     ->icon('heroicon-o-trash')
+                    ->requiresConfirmation()
                     ->tooltip('Eliminar'),
 
-            ]);
+            ])
+            ->actionsColumnLabel('Acciones');
     }
 }
