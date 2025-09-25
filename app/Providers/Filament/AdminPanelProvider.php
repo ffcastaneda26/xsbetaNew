@@ -10,6 +10,8 @@ use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
+use Filament\Support\Enums\Width;
+use Filament\View\PanelsRenderHook;
 use Filament\Widgets\AccountWidget;
 use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -34,7 +36,7 @@ class AdminPanelProvider extends PanelProvider
                 'secondary' => '#50623A',
             ])
             ->darkMode(true)
-            ->renderHook('panels::body.start',fn() => '
+            ->renderHook(PanelsRenderHook::BODY_START,fn() => '
                 <style>
                     .fi-ta-cell{
                         vertical-align: top;
@@ -48,6 +50,7 @@ class AdminPanelProvider extends PanelProvider
                     }
                 </style>
             ')
+            ->maxContentWidth(Width::Full)
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([
