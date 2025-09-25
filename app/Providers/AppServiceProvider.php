@@ -53,10 +53,6 @@ class AppServiceProvider extends ServiceProvider
             'success' => Color::Green,
             'warning' => Color::Amber,
             'indigo' => Color::Indigo,
-            'tlahuac' => Color::rgb('rgb(14, 7, 137)'),
-            'escolares_validado' => Color::rgb('rgb(116, 242, 186)'),
-            'escolares_revalidado' => Color::rgb('rgb(8, 140, 129)'),
-            'escolares_rechazado' => Color::rgb('rgb(199, 54,26)'),
         ]);
         $this->app->bind(LogoutResponseContract::class, LogoutResponse::class);
     }

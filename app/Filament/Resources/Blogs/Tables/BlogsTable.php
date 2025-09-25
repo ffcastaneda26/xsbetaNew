@@ -38,6 +38,7 @@ class BlogsTable
                     ->searchable(),
                 ToggleColumn::make('is_published')
                     ->label('¿Publicado?')
+                    ->alignCenter()
                     ->verticallyAlignStart(),
                 TextColumn::make('published_at')
                     ->dateTime()

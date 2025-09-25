@@ -31,7 +31,23 @@ class AdminPanelProvider extends PanelProvider
             ->profile()
             ->colors([
                 'primary' => Color::Emerald,
+                'secondary' => '#50623A',
             ])
+            ->darkMode(true)
+            ->renderHook('panels::body.start',fn() => '
+                <style>
+                    .fi-ta-cell{
+                        vertical-align: top;
+                    }
+                    .fi-ta-actions {
+                        display: flex;
+                        justify-content: center;
+                    }
+                    .fi-ta-header-cell{
+                        text-align: center;
+                    }
+                </style>
+            ')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([

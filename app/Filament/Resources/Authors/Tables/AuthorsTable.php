@@ -21,6 +21,7 @@ class AuthorsTable
                     ->sortable(),
                 TextColumn::make('blogs_count')
                     ->counts('blogs')
+                    ->alignCenter()
                     ->label('Blogs'),
             ])
             ->filters([
