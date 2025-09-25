@@ -26,6 +26,8 @@
 <body class="font-principal bright-red flex flex-col min-h-screen">
     <div class="grow">
         @include('layouts.principal-header')
+        @include('layouts.principal-hero-section')
+
 
         <div class="min-h-screen">
             {{ $slot }}
