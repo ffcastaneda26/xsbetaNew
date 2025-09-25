@@ -11,8 +11,8 @@
                 <a href="3"><img src="{{ asset('images/icon-pinterest.svg')}}"></a>
                 <a href="3"><img src="{{ asset('images/icon-instagram.svg')}}"></a>
             </div>
-            <p class="text-white text-sm [grid-area:copy] text-end font-semibold">Copyright {{ date('Y') }}.
-                Todos los derechos reservados
+            <p class="text-white text-sm [grid-area:copy] text-end font-semibold">
+                © Copyright {{ date('Y') }}
             </p>
         </section>
     </footer>
