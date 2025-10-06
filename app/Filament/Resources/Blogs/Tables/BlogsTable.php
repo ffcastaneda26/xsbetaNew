@@ -21,8 +21,8 @@ class BlogsTable
             ->columns([
                 ImageColumn::make('image')
                     ->label('Imagen')
-                    ->imageWidth(200)
-                    ->imageHeight(200)
+                    ->imageWidth(50)
+                    ->imageHeight(50)
                     ->getStateUsing(fn($record) => $record->image ? Storage::disk('public')->url($record->image) : asset('/images/generico.jpeg')),
                 TextColumn::make('title')
                     ->label('Título')

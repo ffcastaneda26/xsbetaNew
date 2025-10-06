@@ -1,9 +1,9 @@
         <header>
-            <nav class="wrapper h-20 flex items-center justify-between">
+            <nav class="wrapper h-12 flex items-center justify-between">
 
                 <a href="#" class="w-1/3 max-w-[140px]">
                     {{-- <img src="{{ asset('images/logo.svg') }}" class="w-full"> --}}
-                    <img src="{{ asset('images/logo_excess.jpg') }}" class="w-full">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-10 h-10 p-4">
                 </a>
 
                 <input type="checkbox" id="menu" class="peer hidden">

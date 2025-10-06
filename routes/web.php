@@ -1,15 +1,22 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Livewire\ProductIndex;
 use App\Livewire\Products;
 use App\Livewire\ShowProduct;
+use App\Livewire\Welcome;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/',Welcome::class)->name('home');
+
+
+
 
 Route::get('/dashboard', function () {
     if (Auth::check()) {
