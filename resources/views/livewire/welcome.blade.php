@@ -3,8 +3,11 @@
     <main>
 
         <div class="container mx-auto p-4">
-            {{-- Promociones --}}
-            <header class="flex justify-between items-center mb-6">
+             @livewire('product-card-list', ['title' => 'PROMOCIONES', 'destacadoValue' => 1, 'limit' => 3])
+             @livewire('product-card-list', ['title' => 'PRODUCTOS', 'destacadoValue' => 0, 'limit' => 3])
+            
+             {{-- Promociones --}}
+            {{-- <header class="flex justify-between items-center mb-6">
                 <div class="text-3xl font-bold text-center">
                     <h1>PROMOCIONES</h1>
                 </div>
@@ -55,10 +58,11 @@
                 @endforelse
             </div>
 
-            <hr class="mb-8">
+            <hr class="mb-8"> --}}
+
 
             {{-- Productos --}}
-            <header class="flex justify-between items-center mb-6">
+            {{-- <header class="flex justify-between items-center mb-6">
                 <div class="text-3xl font-bold text-center">
                     <h1>PRODUCTOS</h1>
                 </div>
@@ -105,7 +109,7 @@
                         DISPONIBLES.
                     </h1>
                 @endforelse
-            </div>
+            </div> --}}
 
 
             <hr class="mb-8">

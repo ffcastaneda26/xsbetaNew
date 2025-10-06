@@ -15,12 +15,10 @@ class Welcome extends Component
      */
     public function render()
     {
-        $promociones = Product::where('destacado', 1)->inRandomOrder()->limit(3)->get();
-        $productos   = Product::where('destacado', 0)->inRandomOrder()->limit(3)->get();
+        // $promociones = Product::where('destacado', 1)->inRandomOrder()->limit(3)->get();
+        // $productos   = Product::where('destacado', 0)->inRandomOrder()->limit(3)->get();
         $blogs       = Blog::where('is_published', 1)->inRandomOrder()->limit(3)->get();
         return view('livewire.welcome', [
-            'promociones' => $promociones,
-            'productos'   => $productos,
             'blogs'       => $blogs,
         ])->layout('layouts.principal');
     }
