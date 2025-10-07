@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Livewire\AllProductsList;
 use App\Livewire\ProductIndex;
 use App\Livewire\Products;
 use App\Livewire\ShowProduct;
@@ -15,7 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',Welcome::class)->name('home');
 
-
+Route::get('/productos/todos/{destacado?}', AllProductsList::class)
+    ->name('products.index');
 
 
 Route::get('/dashboard', function () {

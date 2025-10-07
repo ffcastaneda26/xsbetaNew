@@ -1,14 +1,26 @@
 <div class="container mx-auto p-4">
 
     <header class="flex justify-between items-center mb-6">
-        <div class="text-3xl font-bold text-center">
-            <h1>{{ $title }}</h1>
+        <div class="flex justify-start mt-4 pb-8">
+            <a href="/"
+                class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-3 px-8 rounded
+               transition-colors duration-300 shadow-lg">
+                &larr; REGRESAR
+            </a>
         </div>
+
+        {{-- Título --}}
+        <div class="text-3xl font-bold text-center flex-grow">
+            <h1 class="text-center">{{ $title }}</h1>
+        </div>
+
+        {{-- Espacio para que el título quede centrado --}}
+        <div style="width: 100px;"></div>
     </header>
 
     <hr class="mb-8">
 
-    {{-- Contenedor del Grid de Tarjetas --}}
+    {{-- Contenedor del Grid de Tarjetas (Copia la lógica principal de tu vista original) --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8">
         @forelse ($items as $item)
             <a href="{{ route('product.show', ['slug' => $item->slug]) }}" class="h-full">
@@ -38,12 +50,12 @@
                         <h3 class="font-bold text-xl mb-2">{{ $item->name }}</h3>
 
                         <div class="max-h-[96px] overflow-hidden line-clamp-3">
-                             <div class="text-gray-700 text-base">
+                            <div class="text-gray-700 text-base">
                                 {!! $item->description !!}
-                             </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="p-4 pt-0">
+                    <div class="p-4 pt-0 mt-auto">
                         <p class="text-blue-600 font-semibold text-lg text-end">
                             ${{ number_format($item->price, 2, '.', ',') }}
                         </p>
@@ -58,12 +70,13 @@
         @endforelse
     </div>
 
-     <div class="flex justify-end mt-4 pb-8">
-        {{-- Usamos la ruta 'products.index' y le pasamos el valor de $destacadoValue --}}
-        <a href="{{ route('products.index', ['destacado' => $destacadoValue]) }}"
-            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded p-10
-               transition-colors duration-300 shadow-lg shadow-blue-600/50">
-            VER TODOS
+    {{-- Botón para regresar a "/" al final --}}
+    <div class="flex justify-start mt-4 pb-8">
+        <a href="/"
+            class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-3 px-8 rounded
+               transition-colors duration-300 shadow-lg">
+            &larr; REGRESAR
         </a>
     </div>
+
 </div>
