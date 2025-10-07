@@ -15,8 +15,7 @@ class Welcome extends Component
      */
     public function render()
     {
-        // $promociones = Product::where('destacado', 1)->inRandomOrder()->limit(3)->get();
-        // $productos   = Product::where('destacado', 0)->inRandomOrder()->limit(3)->get();
+
         $blogs       = Blog::where('is_published', 1)->inRandomOrder()->limit(3)->get();
         return view('livewire.welcome', [
             'blogs'       => $blogs,

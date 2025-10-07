@@ -48,7 +48,6 @@
                             ${{ number_format($item->price, 2, '.', ',') }}
                         </p>
                     </div>
-
                 </div>
             </a>
 

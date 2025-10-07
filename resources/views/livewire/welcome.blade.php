@@ -61,7 +61,7 @@
 
                 <div class="flex justify-end mt-4 pb-8">
                     <a href="#" {{-- Define la ruta aquí, ej. route('products.index') --}}
-                        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded p-10 
+                        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded p-10
                transition-colors duration-300 shadow-lg shadow-blue-600/50">
                         VER TODOS
                     </a>
