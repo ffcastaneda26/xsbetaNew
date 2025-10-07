@@ -16,7 +16,10 @@ class Welcome extends Component
     public function render()
     {
 
-        $blogs       = Blog::where('is_published', 1)->inRandomOrder()->limit(3)->get();
+        $blogs = Blog::where('is_published', 1)
+                            ->wherenotNull('published_at')
+                            ->inRandomOrder()
+                            ->limit(3)->get();
         return view('livewire.welcome', [
             'blogs'       => $blogs,
         ])->layout('layouts.principal');

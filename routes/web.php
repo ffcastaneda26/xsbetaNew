@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Livewire\AllProductsList;
+use App\Livewire\BlogIndex;
 use App\Livewire\ProductIndex;
 use App\Livewire\Products;
 use App\Livewire\ShowBlog;
@@ -21,6 +22,8 @@ Route::get('/productos/todos/{destacado?}', AllProductsList::class)
     ->name('products.index');
 
 Route::get('/blog/{slug}', ShowBlog::class)->name('blog.show');
+
+Route::get('/comunicados', BlogIndex::class)->name('blogs.index');
 
 Route::get('/dashboard', function () {
     if (Auth::check()) {

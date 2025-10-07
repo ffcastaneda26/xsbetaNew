@@ -16,8 +16,6 @@
                     </div>
                 </header>
 
-                <hr class="mb-8">
-
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8">
                     @forelse ($blogs as $blog)
                         <a href="{{ route('blog.show', ['slug' => $blog->slug]) }}" class="h-full">
@@ -41,7 +39,7 @@
                 </div>
 
                 <div class="flex justify-end mt-4 pb-8">
-                    <a href="#" {{-- Define la ruta aquí, ej. route('products.index') --}}
+                    <a href="{{ route('blogs.index') }}" {{-- ¡Aquí se define la nueva ruta! --}}
                         class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded p-10
                transition-colors duration-300 shadow-lg shadow-blue-600/50">
                         VER TODOS
