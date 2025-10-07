@@ -19,12 +19,8 @@
         </header>
 
         <div class="mb-6 w-full max-w-4xl mx-auto flex flex-col sm:flex-row justify-between gap-4 items-center">
-
-                <div class="flex justify-start mt-4 pb-8">
-                    <input wire:model.live="search" type="text" placeholder="Buscar por título..."
-                        class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm">
-                </div>
-
+            <input wire:model.live="search" type="text" placeholder="Buscar por título..."
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm">
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8">

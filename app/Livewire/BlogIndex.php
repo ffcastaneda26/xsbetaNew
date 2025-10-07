@@ -44,14 +44,6 @@ class BlogIndex extends Component
     {
         $query = Blog::query();
 
-        if ($this->isPublished == 1) {
-             $query->where('is_published', 1)
-                   ->whereNotNull('published_at');
-            $this->title = "COMUNICADOS";
-        } elseif ($this->isPublished == 0) {
-             $query->where('is_published', 0);
-        }
-
         if (!empty($this->search)) {
             $query->where('title', 'like', '%' . $this->search . '%');
         }
