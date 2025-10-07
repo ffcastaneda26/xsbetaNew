@@ -11,9 +11,10 @@
     {{-- Contenedor del Grid de Tarjetas --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8">
         @forelse ($items as $item)
-            <a href="{{ route('product.show', ['slug' => $item->slug]) }}">
-                {{-- ... (Resto del código de la tarjeta) ... --}}
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+            <a href="{{ route('product.show', ['slug' => $item->slug]) }}" class="h-full">
+
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden h-full flex flex-col">
+
                     <div class="h-48 overflow-hidden flex items-center justify-center">
                         @php
                             $imageExists = false;
@@ -32,15 +33,22 @@
                                 class="w-full h-full object-cover">
                         @endif
                     </div>
-                    <div class="p-4">
+
+                    <div class="p-4 flex-col">
                         <h3 class="font-bold text-xl mb-2">{{ $item->name }}</h3>
-                        <p class="text-blue-600 font-semibold text-lg">
+
+                        <div class="max-h-[96px] overflow-hidden line-clamp-3">
+                             <div class="text-gray-700 text-base">
+                                {!! $item->description !!}
+                             </div>
+                        </div>
+                    </div>
+                    <div class="p-4 pt-0">
+                        <p class="text-blue-600 font-semibold text-lg text-end">
                             ${{ number_format($item->price, 2, '.', ',') }}
                         </p>
-                        <p class="text-blue-600 font-semibold text-lg">
-                            ID: {{ $item->id }} Total de imagenes: {{ count($item->images) }}
-                        </p>
                     </div>
+
                 </div>
             </a>
 
@@ -53,7 +61,7 @@
 
     <div class="flex justify-end mt-4 pb-8">
         <a href="#" {{-- Define la ruta aquí, ej. route('products.index') --}}
-            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded p-10 
+            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded p-10
                transition-colors duration-300 shadow-lg shadow-blue-600/50">
             VER TODOS
         </a>

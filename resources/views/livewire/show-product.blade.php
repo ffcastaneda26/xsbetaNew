@@ -8,7 +8,7 @@
 
         <div class="flex flex-col gap-4">
             <h1 class="text-4xl font-bold text-center">{{ $product->name }}</h1>
-            <p class="text-gray-700 text-lg">{!! $product->description !!}</p>
+            <div class="text-gray-700 text-lg">{!! $product->description !!}</div>
             <p class="text-blue-600 font-semibold text-3xl text-center mt-auto">
                 ${{ number_format($product->price, 2, '.', ',') }}
             </p>
