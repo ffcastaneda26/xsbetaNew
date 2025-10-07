@@ -14,14 +14,18 @@
             <h1 class="text-center">{{ $title }}</h1>
         </div>
 
+
         {{-- Espacio para que el título quede centrado --}}
         <div style="width: 100px;"></div>
     </header>
 
     <hr class="mb-8">
-
+    <div class="mt-4 pb-8">
+        {{ $items->links() }}
+    </div>
     {{-- Contenedor del Grid de Tarjetas (Copia la lógica principal de tu vista original) --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8">
+
         @forelse ($items as $item)
             <a href="{{ route('product.show', ['slug' => $item->slug]) }}" class="h-full">
 
@@ -70,6 +74,9 @@
         @endforelse
     </div>
 
+    <div class="mb-8 p-4">
+        {{ $items->links() }}
+    </div>
     {{-- Botón para regresar a "/" al final --}}
     <div class="flex justify-start mt-4 pb-8">
         <a href="/"

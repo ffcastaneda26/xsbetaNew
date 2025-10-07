@@ -5,9 +5,11 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Product; // Asegúrate de importar tu modelo
 use Illuminate\Database\Eloquent\Builder;
+use Livewire\WithPagination;
 
 class AllProductsList extends Component
 {
+    use WithPagination;
     public  $destacado;
 
     public string $title;
@@ -36,7 +38,7 @@ class AllProductsList extends Component
         }
         // Nota: No se aplica 'limit' ni 'inRandomOrder' aquí, queremos *todos*.
 
-        $items = $query->get();
+        $items = $query->paginate(12);
 
         return view('livewire.all-products-list', [
             'items' => $items,
