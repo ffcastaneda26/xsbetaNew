@@ -13,13 +13,18 @@
         <div class="text-3xl font-bold text-center flex-grow">
             <h1 class="text-center">{{ $title }}</h1>
         </div>
-
-
         {{-- Espacio para que el título quede centrado --}}
         <div style="width: 100px;"></div>
     </header>
 
-    <hr class="mb-8">
+    <hr class="mb-4">
+
+    <div class=" flex justify-end mb-6 w-1/2">
+        <input type="text" placeholder="Buscar por nombre o descripción..." {{-- Enlaza la propiedad $search del componente --}}
+            wire:model.live="search"
+            class="w-1/2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
+    </div>
+
     <div class="mt-4 pb-8">
         {{ $items->links() }}
     </div>
