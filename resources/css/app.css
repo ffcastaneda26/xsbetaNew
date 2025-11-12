@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer components {
+    .-err{
+        border: 1px solid red;
+    }
 
     .wrapper {
         @apply w-[90%] mx-auto overflow-hidden max-w-screen-xl;
