@@ -1,6 +1,6 @@
 <footer class="bg-very-dark-blue py-6">
-    <section class="wrapper">
-        <div class="flex flex-col sm:flex-row items-center sm:items-start text-white gap-6 sm:gap-8">
+    <section class="">
+        <div class="flex flex-col sm:flex-row items-center sm:items-start text-white gap-6 sm:gap-8 p-4 w-full">
 
             {{-- Logotipo: 1/6 del ancho --}}
             <div class="w-full sm:w-1/6 flex justify-sta sm:justify-start items-center">
@@ -13,16 +13,10 @@
                 <h3 class="text-xl font-semibold mb-2 border-b-2 border-orange-500 pb-1 inline-block">Descubrir</h3>
                 <nav>
                     <ul class="text-sm space-y-1">
-                        <li><a href="#" class="hover:text-orange-500 transition-colors duration-300">Catálogo de
-                                productos</a></li>
-                        <li><a href="#" class="hover:text-orange-500 transition-colors duration-300">Catálogo de
-                                servicios</a></li>
-                        <li><a href="#" class="hover:text-orange-500 transition-colors duration-300">Conoce IBM
-                                Cloud</a></li>
-                        <li><a href="#" class="hover:text-orange-500 transition-colors duration-300">Opciones de
-                                financiamiento</a></li>
-                        <li><a href="#" class="hover:text-orange-500 transition-colors duration-300">Conozca la
-                                Nube Pública de IBM</a></li>
+                        <li><a href="#" class="hover:text-orange-500 transition-colors duration-300">productos</a></li>
+                        <li><a href="#" class="hover:text-orange-500 transition-colors duration-300">Servicios</a></li>
+                        <li><a href="/contacto" class="hover:text-orange-500 transition-colors duration-300">Contacto</a></li>
+                        
                     </ul>
                 </nav>
             </div>
@@ -35,10 +29,11 @@
                     referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
                 {{-- Copyright separado --}}
-                <div class="text-white text-sm text-end sm:text-right mt-2">
-                    © Copyright {{ date('Y') }}
-                </div>
+                
             </div>
+        </div>
+        <div class="text-white text-sm mt-2 text-center bg-gray-500 py-2 mb-0">
+            Copyright {{ date('Y') }} - <a href="/aviso-de-privacidad">Aviso de privacidad</a>
         </div>
 
 
