@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 @layer components {
     .-err{
         border: 1px solid red;
@@ -56,4 +58,17 @@
         @apply z-[100] self-center justify-self-end;
     }
 
+}
+
+/*
+ |--------------------------------------------------------------------------
+ | Nav Bar
+ |--------------------------------------------------------------------------
+ |
+ | 
+ |
+ */
+
+.-nav-button{
+    @apply  text-azul px-4 rounded focus:outline-none hover:text-white hover:bg-azul;
 }
