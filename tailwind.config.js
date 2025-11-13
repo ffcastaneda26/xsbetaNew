@@ -18,6 +18,7 @@ export default {
                 principal: ['"Be Vietnam Pro"', "sans-serif"],
             },
             colors: {
+                "azul" : "#384985",
                 "bright-red": "hsl(12, 88%, 59%)",
                 "dark-blue": "hsl(228, 39%, 23%)",
                 "dark-grayish-blue": "hsl(227, 12%, 61%)",

@@ -1,8 +1,8 @@
 <div class="container mx-auto p-4">
 
-    <header class="flex justify-between items-center mb-6">
-        <div class="text-3xl font-bold text-center">
-            <h1>{{ $title }}</h1>
+    <header class="flex justify-between items-center mb-0">
+        <div class="text-6xl font-bold text-center">
+            <h1 class="-titulo">{{ $title }}</h1>
         </div>
     </header>
 
@@ -10,6 +10,7 @@
 
     {{-- Contenedor del Grid de Tarjetas --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8">
+
         @forelse ($items as $item)
             <a href="{{ route('product.show', ['slug' => $item->slug]) }}" class="h-full">
 
@@ -43,10 +44,8 @@
                              </div>
                         </div>
                     </div>
-                    <div class="p-4 pt-0">
-                        <p class="text-blue-600 font-semibold text-lg text-end">
-                            ${{ number_format($item->price, 2, '.', ',') }}
-                        </p>
+                    <div class="text-end">
+                        <button class="-ver-mas">Ver mas</button>
                     </div>
                 </div>
             </a>
@@ -56,6 +55,7 @@
                 NO HAY {{ $title }} DISPONIBLES.
             </h1>
         @endforelse
+
     </div>
 
      <div class="flex justify-end mt-4 pb-8">
