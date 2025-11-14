@@ -3,12 +3,11 @@
 use App\Http\Controllers\ProfileController;
 use App\Livewire\AllProductsList;
 use App\Livewire\BlogIndex;
-use App\Livewire\ProductIndex;
+use App\Livewire\ContactForm;
 use App\Livewire\Products;
 use App\Livewire\ShowBlog;
 use App\Livewire\ShowProduct;
 use App\Livewire\Welcome;
-use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -16,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/',Welcome::class)->name('home');
+Route::get('/', Welcome::class)->name('home');
 
 Route::get('/productos/todos/{destacado?}', AllProductsList::class)
     ->name('products.index');
@@ -31,6 +30,7 @@ Route::get('/dashboard', function () {
             return redirect()->to('/admin');
         }
     }
+
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -40,7 +40,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
 Route::get('/productos', Products::class)->name('products');
 Route::get('/productos/{slug}', ShowProduct::class)->name('product.show');
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';
+
+Route::get('/contacto', ContactForm::class)->name('contacto');
